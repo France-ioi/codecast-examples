@@ -1,0 +1,53 @@
+{
+  "name": "codecast-examples",
+  "version": "0.0.1",
+  "description": "Source code examples for codecast.",
+  "homepage": "https://github.com/France-ioi/codecast-examples",
+  "authors": [
+    "Sébastien Carlier <s.carlier@epixode.fr>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/France-ioi/codecast-examples"
+  },
+  "bugs": {
+    "url": "https://github.com/France-ioi/codecast-examples/issues"
+  },
+  "scripts": {
+    "start": "nodemon --watch backend --exec npx --no-install babel-node -- backend/index.js",
+    "build": "webpack --progress --colors --display-modules"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.42",
+    "@babel/core": "^7.0.0-beta.42",
+    "@babel/node": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.42",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.42",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.42",
+    "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-react": "^7.0.0-beta.42",
+    "@babel/runtime": "^7.0.0-beta.42",
+    "async": "^2.6.0",
+    "babel-loader": "8.0.0-beta.2",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.26.1",
+    "express": "^4.13.4",
+    "file-loader": "^0.10.0",
+    "immutability-helper": "^2.2.0",
+    "nodemon": "^1.12.1",
+    "pug": "^2.0.3",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
+    "resolve-url-loader": "^2.2.0",
+    "style-loader": "^0.13.1",
+    "superagent": "^3.4.4",
+    "url-loader": "^0.5.7",
+    "walkdir": "^0.0.12",
+    "webpack": "^3.0.0",
+    "webpack-dev-middleware": "^1.10.0"
+  }
+}

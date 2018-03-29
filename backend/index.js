@@ -46,15 +46,19 @@ function buildApp (config, callback) {
   app.get('/examples.json', function (req, res) {
     scanExamples(examplesPath, function (err, examples, errors) {
       if (err) return res.json({error: err.toString()});
-      res.json({examples, errors});
+      const tags = collectTags(examples);
+      res.json({success: true, data: {examples, tags, errors}});
     });
     /*
-    if (cacheHit) {
+    if (cache file exists) {
       readFile(cacheFile, function (err, text) {
         if (err) return res.json({error: err.toString()});
         res.send(text);
       });
-    }*/
+    } else {
+      // scan examples, write cache file, 
+    }
+    */
   });
 
   callback(null, app);
@@ -93,6 +97,18 @@ function scanExamples (rootPath, callback) {
       callback(null, examples, errors);
     });
   });
+}
+
+function collectTags (examples) {
+  const tags = new Set();
+  for (let example of examples) {
+    if (example.tags) {
+      for (let tag of example.tags) {
+        tags.add(tag);
+      }
+    }
+  }
+  return Array.from(tags.keys()).sort();
 }
 
 function dropPrefix (prefix, str) {

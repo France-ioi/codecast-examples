@@ -16,6 +16,9 @@ export function start (container, options) {
   const enhancer = applyMiddleware(sagaMiddleware);
   function safeReducer (state, action) {
     try {
+      if (process.env.NODE_ENV === 'development') {
+        console.log('reduce', action);
+      }
       return reducer(state, action);
     } catch (ex) {
       console.error('action failed to reduce', action, ex);
@@ -34,7 +37,7 @@ export function start (container, options) {
     Object.assign(exports, {actionTypes, selectors, start, store});
   }
 
-  start();
   store.dispatch({type: actionTypes.appInitialized, payload: {options}});
+  start();
   ReactDOM.render(<Provider store={store}><views.App/></Provider>, container);
 };

@@ -27,8 +27,8 @@ function setLanguageReducer (state, {payload: {language}}) {
   if (!Messages[language]) language = 'en-US';
   const localizedMessage = Object.create(Message,
       {_l: {writable: false, configurable: false, value: language}});
-  const getMessage = memoize(function (message) {
-    const value = Messages[language][message] || `L(${message})`;
+  const getMessage = memoize(function (message, defaultText) {
+    const value = Messages[language][message] || defaultText || `L:${message}`;
     return Object.create(localizedMessage,
       {_m: {writable: false, configurable: false, value}});
   });

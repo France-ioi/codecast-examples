@@ -196,8 +196,10 @@ function* appSaga () {
 function* loadExamples () {
   const {options: {baseUrl, lang}, actionTypes} = yield select(state => state);
   let response;
+  /* Chop off the country code from the full language specifier. */
+  const code = lang.replace(/-[a-zA-Z]*$/, '');
   try {
-    response = yield call(jsonGet, `${baseUrl}/examples.json?lang=${lang}`);
+    response = yield call(jsonGet, `${baseUrl}/examples.json?lang=${code}`);
   } catch (ex) {
     yield put({type: actionTypes.examplesLoadFailed, payload: {error: ex}});
     return;

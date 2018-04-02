@@ -192,10 +192,10 @@ function* appSaga () {
 }
 
 function* loadExamples () {
-  const {options: {baseUrl}, actionTypes} = yield select(state => state);
+  const {options: {baseUrl, lang}, actionTypes} = yield select(state => state);
   let response;
   try {
-    response = yield call(jsonGet, `${baseUrl}/examples.json`);
+    response = yield call(jsonGet, `${baseUrl}/examples.json?lang=${lang}`);
   } catch (ex) {
     yield put({type: actionTypes.examplesLoadFailed, payload: {error: ex}});
     return;
@@ -204,14 +204,15 @@ function* loadExamples () {
 }
 
 function* useExample ({payload: {example}}) {
-  const {options: {callbackUrl}} = yield select(state => state);
+  const {options: {callbackUrl, target}} = yield select(state => state);
   const exampleUrl = url.parse(callbackUrl, true);
   exampleUrl.query.source = example.source;
   if (example.mode) {
     exampleUrl.query.mode = example.mode;
   }
   // TODO: also pass: selection, input
-  window.open(url.format(exampleUrl), '_blank');
+  console.log('target', target, typeof target);
+  window.open(url.format(exampleUrl), target);
 }
 
 export default {

@@ -39,14 +39,15 @@ function buildApp (config, callback) {
   app.use('/assets', express.static(path.join(appDir, 'assets')));
 
   app.get('/', function (req, res) {
-    let {callback: callbackUrl, tags} = req.query;
+    let {callback: callbackUrl, tags, lang, target} = req.query;
     tags = (tags||'').split(',').filter(tag => tag);
-    const options = {baseUrl, callbackUrl, tags};
+    const options = {baseUrl, callbackUrl, tags, lang, target};
     res.render('index', {isDevelopment, rebaseUrl, options});
   });
 
   app.get('/examples.json', function (req, res) {
-    scanExamples(examplesPath, function (err, examples, errors) {
+    const lang = req.query.lang || 'en';
+    scanExamples(examplesPath, {lang}, function (err, examples, errors) {
       if (err) return res.json({error: err.toString()});
       const tags = collectTags(examples);
       res.json({success: true, data: {examples, tags, errors}});
@@ -70,14 +71,15 @@ function buildApp (config, callback) {
   }
 }
 
-function scanExamples (rootPath, callback) {
-  const filenames = [];
+function scanExamples (rootPath, options, callback) {
+  let filenames = [];
   walk(rootPath).on('file', function (filename, stat) {
     if (/\.c$/.test(filename)) {
       filenames.push(filename);
     }
   }).on('end', function () {
     const examples = [], errors = [];
+    filenames = filterExampleFilenames(filenames, options);
     async.forEach(filenames, function (filename, callback) {
       const relPath = dropPrefix(rootPath, filename);
       fs.readFile(filename, 'utf8', function (err, text) {
@@ -99,6 +101,39 @@ function scanExamples (rootPath, callback) {
       callback(null, examples, errors);
     });
   });
+}
+
+function filterExampleFilenames (filenames, options) {
+  const keyMap = new Map();
+  for (const filename of filenames) {
+    const {key, lang} = decodeFilename(path.basename(filename));
+    let variants = keyMap.get(key);
+    if (!variants) {
+      variants = new Map();
+      keyMap.set(key, variants);
+    }
+    variants.set(lang, filename);
+  }
+  let {lang} = options;
+  if (!lang) lang = 'en'; /* filter language is 'en' if unspecified */
+  const result = [];
+  for (const [key, variants] of keyMap.entries()) {
+    if (variants.has(lang)) {
+      result.push(variants.get(lang));
+    } else if (variants.has('en')) {
+      /* fall back to english if no match for user language */
+      result.push(variants.get('en'));
+    }
+  }
+  return result.sort();
+}
+
+function decodeFilename (filename) {
+  const md = /^([A-Za-z0-9_-]+)(?:\.([a-z]{2}))?\.c$/.exec(filename);
+  if (!md) return false;
+  const key = md[1];
+  const lang = md[2] || 'en'; /* example language is 'en' if unspecified */
+  return {key, lang};
 }
 
 function collectTags (examples) {

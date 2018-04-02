@@ -109,7 +109,7 @@ class App extends React.PureComponent {
                   </Button>
                 </div>
                 <h3>{selectedExample.title}</h3>
-                <pre className='pt-elevation-2'>
+                <pre className='pt-elevation-2' style={{overflow: 'scroll'}}>
                   {selectedExample.source}
                 </pre>
                 <p>

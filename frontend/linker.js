@@ -1,5 +1,5 @@
 /* Copyright (C) 2017 epixode - All Rights Reserved
- * You may use, distribute and modify this code under the
+ * You may use, distribute and modify this file under the
  * terms of the MIT license.
  */
 

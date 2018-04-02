@@ -7,5 +7,5 @@ int main() {
     if (i == 1) { i += 1; continue; }
     if (i == 3) break;
   }
-  printf("final value: %i\n", i);
+  printf("valeur finale: %i\n", i);
 }

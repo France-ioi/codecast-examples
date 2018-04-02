@@ -1,4 +1,4 @@
-/* {"title":"input/output","tags":["plain"]} */
+/* {"title":"entrée/sortie","tags":["plain"]} */
 #include <stdio.h>
 unsigned long strlen(const char * s) {
   unsigned long l = 0;
@@ -8,12 +8,12 @@ unsigned long strlen(const char * s) {
 int main() {
     int a, n;
     char s[12];
-    printf("Enter a word and a number:\n");
+    printf("Entrez un mot et un nombre:\n");
     n = scanf("%s %d", s, &a);
     if (n == 2) {
-        printf("word length * number value = %lu\n", strlen(s) * a);
+        printf("Longueur du mot * nombre = %lu\n", strlen(s) * a);
     } else {
-        printf("missing value!\n");
+        printf("Pas de valeur!\n");
     }
     return 0;
 }

@@ -1,4 +1,4 @@
-/* {"title":"2D array global, initialized","tags":["plain"]} */
+/* {"title":"init. tableau 2D global","tags":["plain"]} */
 #include <stdio.h>
 int a[][2] = {{1, 2}, {3, 4}};
 int main() {

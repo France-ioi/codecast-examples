@@ -1,4 +1,4 @@
-/* {"title":"struct and function pointer","tags":["plain"]} */
+/* {"title":"struct et pointeur sur fonction","tags":["plain"]} */
 struct serial_s {
     int (*available)(void);
 };

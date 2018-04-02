@@ -1,4 +1,4 @@
-/* {"title":"allocation dynamique"} */
+/* {"title":"allocation dynamique","tags":["plain"]} */
 #include <stdlib.h>
 int main() {
     //! showMemory(start=272)

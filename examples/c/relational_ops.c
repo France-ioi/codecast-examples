@@ -1,4 +1,4 @@
-/* {"title":"opérateurs relationnels"} */
+/* {"title":"opérateurs relationnels","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int a = 1, b = 2;

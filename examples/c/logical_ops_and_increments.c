@@ -1,4 +1,4 @@
-/* {"title":"et/ou logique et post/pre increment"} */
+/* {"title":"et/ou logique et post/pre increment","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int k = 0;

@@ -1,4 +1,4 @@
-/* {"title":"appel de fonction"} */
+/* {"title":"appel de fonction","tags":["plain"]} */
 #include <stdio.h>
 int fact(int n) {
     if (n == 0)

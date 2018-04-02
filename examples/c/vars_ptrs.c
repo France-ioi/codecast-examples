@@ -1,4 +1,4 @@
-/* {"title":"variables et pointeurs"} */
+/* {"title":"variables et pointeurs","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int i = 0, j = 1, *k = &j;

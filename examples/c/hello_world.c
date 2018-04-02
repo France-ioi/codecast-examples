@@ -1,4 +1,4 @@
-/* {"title":"hello world"} */
+/* {"title":"hello world","tags":["plain"]} */
 #include <stdio.h>
 int main() {
    printf("hello, ");

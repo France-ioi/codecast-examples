@@ -1,4 +1,4 @@
-/* {"title":"tableau 1D"} */
+/* {"title":"1D array","tags":["plain"]} */
 #include <stdio.h>
 int main() {
     //! showArray(a, cursors=[i,n], n=8, cw=32)

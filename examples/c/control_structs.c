@@ -1,4 +1,4 @@
-/* {"title":"structures de contrôle"} */
+/* {"title":"structures de contrôle","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int k;

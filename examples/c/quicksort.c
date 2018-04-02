@@ -1,4 +1,4 @@
-/* {"title":"quicksort"} */
+/* {"title":"quicksort","tags":["plain"]} */
 #include <stdio.h>
 
 void print_array(int size, int array[]) {

@@ -1,4 +1,4 @@
-/* {"title":"opérateurs unaires"} */
+/* {"title":"opérateurs unaires","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int a = 3, *b;

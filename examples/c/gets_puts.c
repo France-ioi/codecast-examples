@@ -1,4 +1,4 @@
-/* {"title":"gets/puts"} */
+/* {"title":"gets/puts","tags":["plain"]} */
 #include <stdio.h>
 int main() {
     char str[16];

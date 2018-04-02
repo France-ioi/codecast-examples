@@ -1,4 +1,4 @@
-/* {"title":"for, break, continue"} */
+/* {"title":"for, break, continue","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int i;

@@ -1,4 +1,4 @@
-/* {"title":"multiplication de matrices"} */
+/* {"title":"multiplication de matrices","tags":["plain"]} */
 #include <stdio.h>
 int main() {
     //! A = showArray2D(A, rowCursors=[i], colCursors=[k], width=.33)

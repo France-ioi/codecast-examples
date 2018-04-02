@@ -98,6 +98,7 @@ function scanExamples (rootPath, options, callback) {
       });
     }, function (err) {
       if (err) return callback(err);
+      examples.sort((e1, e2) => e1.title.localeCompare(e2.title));
       callback(null, examples, errors);
     });
   });

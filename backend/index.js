@@ -39,7 +39,9 @@ function buildApp (config, callback) {
   app.use('/assets', express.static(path.join(appDir, 'assets')));
 
   app.get('/', function (req, res) {
-    const options = {baseUrl};
+    let {callback: callbackUrl, tags} = req.query;
+    tags = (tags||'').split(',').filter(tag => tag);
+    const options = {baseUrl, callbackUrl, tags};
     res.render('index', {isDevelopment, rebaseUrl, options});
   });
 

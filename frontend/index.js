@@ -37,6 +37,7 @@ export function start (container, options) {
     Object.assign(exports, {actionTypes, selectors, start, store});
   }
 
+  store.dispatch({type: actionTypes.setLanguage, payload: {language: options.lang}});
   store.dispatch({type: actionTypes.appInitialized, payload: {options}});
   start();
   ReactDOM.render(<Provider store={store}><views.App/></Provider>, container);

@@ -4,10 +4,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {call, fork, put, select, takeEvery} from 'redux-saga/effects';
 import fetchPonyfill from 'fetch-ponyfill';
-import {Button, FormGroup, Icon, Intent, NonIdealState, Spinner, Switch, Tag} from "@blueprintjs/core";
-import {IconNames} from "@blueprintjs/icons";
+import {Button, FormGroup, Icon, Intent, NonIdealState, Spinner, Switch, Tag} from '@blueprintjs/core';
+import {IconNames} from '@blueprintjs/icons';
 
 import style from './style.css';
+import I18nBundle from './i18n';
 
 const {fetch} = fetchPonyfill();
 
@@ -70,13 +71,13 @@ function isArraySubset (a, b) {
 }
 
 function AppSelector (state) {
-  const {lastError, loading, filteredExamples, tags, selectedTags, selectedExample, actionTypes} = state;
-  return {error: lastError, loading, examples: filteredExamples, selectedTags, tags, selectedExample, actionTypes};
+  const {lastError, getMessage, loading, filteredExamples, tags, selectedTags, selectedExample, actionTypes} = state;
+  return {error: lastError, getMessage, loading, examples: filteredExamples, selectedTags, tags, selectedExample, actionTypes};
 }
 
 class App extends React.PureComponent {
   render () {
-    const {error, loading, examples, tags, selectedTags, selectedExample} = this.props;
+    const {error, getMessage, loading, examples, tags, selectedTags, selectedExample} = this.props;
     if (error) {
       return <p class='alert'>{error.toString()}</p>;
     }
@@ -84,18 +85,18 @@ class App extends React.PureComponent {
       return <Spinner intent={Intent.PRIMARY} />;
     }
     if (!examples) {
-      return <p>{"examples failed to load"}</p>;
+      return <p>{getMessage('LOAD_EXAMPLES_FAILED')}</p>;
     }
     return (
       <div className='pt-app examples-app'>
         <div style={{float: 'left', width: '400px'}}>
-          <h3>{"Available examples"}</h3>
-          <FormGroup label="Toggle filtering by clicking on tags:">
+          <h3>{getMessage('AVAILABLE_EXAMPLES')}</h3>
+          <FormGroup label={getMessage('TAG_FILTERING_MESSAGE')}>
             {tags.map((tag) =>
               <FilterTag key={tag} tag={tag} selected={-1 !== selectedTags.indexOf(tag)}
-                onChange={this._changeTagFilter} />)}
+                onChange={this._changeTagFilter} label={getMessage(`tag:${tag}`, tag)} />)}
           </FormGroup>
-          <p>{"Select an example by clicking on its title:"}</p>
+          <p>{getMessage('SELECT_EXAMPLE_MESSAGE')}</p>
           <ul>
             {examples.map((example) => <ExampleLink key={example.origin} example={example} onSelect={this._selectExample} />)}
           </ul>
@@ -105,7 +106,7 @@ class App extends React.PureComponent {
             ? <div>
                 <div style={{float: 'right'}}>
                   <Button onClick={this._useExample} rightIcon='arrow-right' intent={Intent.PRIMARY}>
-                    {"Use"}
+                    {getMessage('USE_EXAMPLE_BUTTON')}
                   </Button>
                 </div>
                 <h3>{selectedExample.title}</h3>
@@ -114,10 +115,11 @@ class App extends React.PureComponent {
                 </pre>
                 <p>
                   {(selectedExample.tags||[]).map(tag =>
-                    <Tag key={tag} intent={Intent.PRIMARY}>{tag}</Tag>)}
+                    <Tag key={tag} intent={Intent.PRIMARY}>{getMessage(`tag:${tag}`, tag)}</Tag>)}
                 </p>
               </div>
-            : <NonIdealState title="no example selected" description="Select an example from the list to the left" visual='hand-left' />}
+            : <NonIdealState title={getMessage('NO_EXAMPLE_SELECTED')} description={getMessage('NO_EXAMPLE_SELECTED_DESC')} visual='hand-left' />}
+
         </div>
       </div>
     );
@@ -135,11 +137,11 @@ class App extends React.PureComponent {
 
 class FilterTag extends React.PureComponent {
   render () {
-    const {tag, selected} = this.props;
+    const {tag, label, selected} = this.props;
     if (true) { /* UI option 1, use clickable tags */
       return (
         <Tag intent={selected ? Intent.PRIMARY : Intent.NONE} interactive={true} onClick={this._click}>
-          {tag}
+          {label}
         </Tag>
       );
     }
@@ -210,8 +212,7 @@ function* useExample ({payload: {example}}) {
   if (example.mode) {
     exampleUrl.query.mode = example.mode;
   }
-  // TODO: also pass: selection, input
-  console.log('target', target, typeof target);
+  /* Consider: also pass: selection, input */
   window.open(url.format(exampleUrl), target);
 }
 
@@ -239,5 +240,6 @@ export default {
   views: {
     App: connect(AppSelector)(App)
   },
-  saga: appSaga
+  saga: appSaga,
+  includes: [I18nBundle],
 };

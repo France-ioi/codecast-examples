@@ -1,4 +1,4 @@
-/* {"title":"factorielle (itératif)","tags":["plain"],"selection":{"start":{"row":2,"column":24},"end":{"row":2,"column":31}}} */
+/* {"title":"factorielle (itératif)","tags":["plain", "unix"],"selection":{"start":{"row":2,"column":24},"end":{"row":2,"column":31}}} */
 #include <stdio.h>
 int main (int argc, char** argv) {
     //! showVar(b)

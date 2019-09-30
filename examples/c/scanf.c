@@ -1,4 +1,4 @@
-/* {"title":"scanf","tags":["plain"]} */
+/* {"title":"scanf","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
     int a, n;

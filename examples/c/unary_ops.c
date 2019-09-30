@@ -1,4 +1,4 @@
-/* {"title":"operators, unary","tags":["plain"]} */
+/* {"title":"operators, unary","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
   int a = 3, *b;

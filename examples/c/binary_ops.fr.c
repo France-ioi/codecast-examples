@@ -1,4 +1,4 @@
-/* {"title":"opérateurs binaires","tags":["plain"]} */
+/* {"title":"opérateurs binaires","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
   printf("add %i\n", 10 + 2);

@@ -1,4 +1,4 @@
-/* {"title":"factorielle (recursif)","tags":["plain"]} */
+/* {"title":"factorielle (recursif)","tags":["plain", "unix"]} */
 #include <stdio.h>
 int fact(int n) {
     if (n == 0)

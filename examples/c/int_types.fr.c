@@ -1,4 +1,4 @@
-/* {"title":"int, short, char","tags":["plain"]} */
+/* {"title":"int, short, char","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
   char c = '*', d = 127;

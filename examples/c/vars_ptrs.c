@@ -1,4 +1,4 @@
-/* {"title":"variables and pointers","tags":["plain"]} */
+/* {"title":"variables and pointers","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
   int i = 0, j = 1, *k = &j;

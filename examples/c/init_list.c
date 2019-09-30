@@ -1,4 +1,4 @@
-/* {"title":"initialization lists","tags":["plain"]} */
+/* {"title":"initialization lists","tags":["plain", "unix"]} */
 #include <stdio.h>
 int main() {
     int a[] = {1, 2};

@@ -1,4 +1,4 @@
-/* {"title":"fibonacci (recursion)","tags":["plain"]} */
+/* {"title":"fibonacci (recursion)","tags":["plain", "unix"]} */
 #include <stdio.h>
 int fibo(int n) {
    if (n == 0)

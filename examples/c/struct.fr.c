@@ -1,4 +1,4 @@
-/* {"title":"struct","tags":["plain"]} */
+/* {"title":"struct","tags":["plain", "unix"]} */
 struct point {
   int x;
   int y;

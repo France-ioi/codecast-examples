@@ -1,4 +1,4 @@
-/* {"title":"struct and function pointer","tags":["plain"]} */
+/* {"title":"struct and function pointer","tags":["plain", "unix"]} */
 struct serial_s {
     int (*available)(void);
 };

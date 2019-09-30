@@ -1,4 +1,4 @@
-/* {"title":"tri rapide (quicksort)","tags":["plain"]} */
+/* {"title":"tri rapide (quicksort)","tags":["plain", "unix"]} */
 #include <stdio.h>
 
 void print_array(int size, int array[]) {

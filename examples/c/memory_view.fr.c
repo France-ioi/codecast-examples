@@ -1,4 +1,4 @@
-/* {"title":"affichage de la mémoire","tags":["plain"]} */
+/* {"title":"affichage de la mémoire","tags":["plain", "unix"]} */
 #include <stdio.h>
 void show(int i, int j) {
     printf("i = %i, j = %i\n", i, j);

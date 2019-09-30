@@ -210,6 +210,7 @@ function* loadExamples () {
 function* useExample ({payload: {example}}) {
   const {options: {callbackUrl, target}} = yield select(state => state);
   const exampleUrl = url.parse(callbackUrl, true);
+  delete exampleUrl.search;
   exampleUrl.query.source = example.source;
   if (example.mode) {
     exampleUrl.query.mode = example.mode;

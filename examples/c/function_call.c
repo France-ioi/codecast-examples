@@ -1,4 +1,4 @@
-/* {"title":"factorial (recursive)","mode":"unix","tags":["plain"]} */
+/* {"title":"factorial (recursive)","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int fact(int n) {
     if (n == 0)

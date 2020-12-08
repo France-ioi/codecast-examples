@@ -1,4 +1,4 @@
-/* {"title":"matrix multiplication","mode":"unix","tags":["plain"]} */
+/* {"title":"matrix multiplication","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int main() {
     //! A = showArray2D(A, rowCursors=[i], colCursors=[k], width=.33)

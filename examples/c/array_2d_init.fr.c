@@ -1,4 +1,4 @@
-/* {"title":"init. tableau 2D global","mode":"unix","tags":["plain"]} */
+/* {"title":"init. tableau 2D global","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int a[][2] = {{1, 2}, {3, 4}};
 int main() {

@@ -6,6 +6,7 @@ module.exports = {
     NO_EXAMPLE_SELECTED: "no example selected",
     NO_EXAMPLE_SELECTED_DESC: "Select an example from the list to the left",
     USE_EXAMPLE_BUTTON: "Use",
-    'tag:plain': "plain",
+    'tag:plain': "c",
     'tag:arduino': "arduino",
+    'tag:python': "python"
 };

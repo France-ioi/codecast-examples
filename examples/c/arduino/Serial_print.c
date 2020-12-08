@@ -1,4 +1,4 @@
-/* {"title":"Serial.print","mode":"arduino","tags":["arduino"]} */
+/* {"title":"Serial.print","platform":"arduino","tags":["arduino"]} */
 void setup() {
     Serial.begin(9600);
 }

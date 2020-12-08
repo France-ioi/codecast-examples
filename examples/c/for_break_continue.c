@@ -1,4 +1,4 @@
-/* {"title":"for, break, continue","mode":"unix","tags":["plain"]} */
+/* {"title":"for, break, continue","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int main() {
   int i;

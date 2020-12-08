@@ -1,4 +1,4 @@
-/* {"title":"global variables","mode":"unix","tags":["plain"]} */
+/* {"title":"global variables","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int a = 1;
 int b = 2;

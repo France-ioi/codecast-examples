@@ -1,4 +1,4 @@
-/* {"title":"variables et pointeurs","mode":"unix","tags":["plain"]} */
+/* {"title":"variables et pointeurs","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int main() {
   int i = 0, j = 1, *k = &j;

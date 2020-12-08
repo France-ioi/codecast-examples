@@ -1,4 +1,4 @@
-/* {"title":"blink","mode":"arduino","tags":["arduino"]} */
+/* {"title":"blink","platform":"arduino","tags":["arduino"]} */
 #define LED_PIN 0
 void setup() {
     pinMode(LED_PIN, OUTPUT);

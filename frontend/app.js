@@ -6,6 +6,8 @@ import fetchPonyfill from 'fetch-ponyfill';
 import {Button, FormGroup, Intent, NonIdealState, Spinner, Switch, Tag} from '@blueprintjs/core';
 import I18nBundle from './i18n';
 
+import './style.css';
+
 const {fetch} = fetchPonyfill();
 
 function appInitializedReducer(state, {payload: {options}}) {
@@ -37,13 +39,17 @@ function exampleSelectedReducer(state, {payload: {example}}) {
 
 function tagFilterChangedReducer(state, {payload: {tag, selected}}) {
     let {selectedTags} = state;
+
     if (selected) {
-        selectedTags = [...selectedTags, tag];
+        selectedTags = [tag];
     } else {
         selectedTags = selectedTags.filter(other => other !== tag);
     }
 
-    return {...state, selectedTags};
+    return {
+        ...state,
+        selectedTags
+    };
 }
 
 function lateReducer(state) {
@@ -89,8 +95,9 @@ function AppSelector(state) {
 class App extends React.PureComponent {
     render() {
         const {error, getMessage, loading, examples, tags, selectedTags, selectedExample} = this.props;
+
         if (error) {
-            return <p class='alert'>{error.toString()}</p>;
+            return <p className='alert'>{error.toString()}</p>;
         }
         if (loading) {
             return <Spinner intent={Intent.PRIMARY}/>;
@@ -117,11 +124,7 @@ class App extends React.PureComponent {
                     <p>{getMessage('SELECT_EXAMPLE_MESSAGE')}</p>
                     <ul>
                         {examples.map((example) =>
-                            <ExampleLink
-                                key={example.origin}
-                                example={example}
-                                onSelect={this._selectExample}
-                            />
+                            <ExampleLink key={example.origin} example={example} onSelect={this._selectExample}/>
                         )}
                     </ul>
                 </div>
@@ -135,13 +138,11 @@ class App extends React.PureComponent {
                             </div>
                             <h3>{selectedExample.title}</h3>
                             <pre className='pt-elevation-2' style={{overflow: 'scroll'}}>
-                                {selectedExample.source}
+                              {selectedExample.source}
                             </pre>
                             <p>
                                 {(selectedExample.tags || []).map(tag =>
-                                    <Tag key={tag} intent={Intent.PRIMARY}>
-                                      {getMessage(`tag:${tag}`, tag)}
-                                    </Tag>
+                                    <Tag key={tag} intent={Intent.PRIMARY}>{getMessage(`tag:${tag}`, tag)}</Tag>
                                 )}
                             </p>
                         </div>
@@ -178,7 +179,6 @@ class FilterTag extends React.PureComponent {
                 </Tag>
             );
         }
-
         return ( /* UI option 2, use switches */
             <Switch checked={selected} onChange={this._click} label={tag} inline={true}/>
         );
@@ -225,7 +225,9 @@ function jsonGet(url) {
 
 function* appSaga() {
     const {actionTypes} = yield select(state => state);
+
     yield fork(loadExamples);
+
     yield takeEvery(actionTypes.exampleUsed, useExample);
 }
 
@@ -235,6 +237,7 @@ function* loadExamples() {
 
     /* Chop off the country code from the full language specifier. */
     const code = lang.replace(/-[a-zA-Z]*$/, '');
+
     try {
         response = yield call(jsonGet, `${baseUrl}/examples.json?lang=${code}`);
     } catch (ex) {
@@ -247,10 +250,14 @@ function* loadExamples() {
 
 function* useExample({payload: {example}}) {
     const {options: {callbackUrl, target}} = yield select(state => state);
+
     const exampleUrl = url.parse(callbackUrl, true);
+
+    delete exampleUrl.search;
+
     exampleUrl.query.source = example.source;
-    if (example.mode) {
-        exampleUrl.query.mode = example.mode;
+    if (example.platform) {
+        exampleUrl.query.platform = example.platform;
     }
 
     /* Consider: also pass: selection, input */
@@ -282,5 +289,5 @@ export default {
         App: connect(AppSelector)(App)
     },
     saga: appSaga,
-    includes: [I18nBundle],
-};
+    includes: [I18nBundle]
+}

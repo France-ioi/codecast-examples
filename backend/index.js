@@ -51,7 +51,7 @@ function buildApp(config, callback) {
     app.get('/examples.json', function (req, res) {
         const lang = req.query.lang || 'en';
 
-        scanExamples(examplesPath, {lang}, function (err, examples, errors) {
+        scanExamples(examplesPath, {lang}, function(err, examples, errors) {
             if (err) {
                 return res.json({error: err.toString()});
             }
@@ -70,19 +70,19 @@ function buildApp(config, callback) {
 }
 
 function scanExamples(rootPath, options, callback) {
-    let filenames = [];
-    walk(rootPath).on('file', function (filename, stat) {
-        if (/\.c$/.test(filename)) {
-            filenames.push(filename);
+    let filepaths = [];
+    walk(rootPath).on('file', function (filepath, stat) {
+        if (/\.c$/.test(filepath) || /\.py$/.test(filepath)) {
+            filepaths.push(filepath);
         }
     }).on('end', function () {
         const examples = [], errors = [];
 
-        filenames = filterExampleFilenames(filenames, options);
+        filepaths = filterExampleFilepaths(filepaths, options);
 
-        async.forEach(filenames, function (filename, callback) {
-            const relPath = dropPrefix(rootPath, filename);
-            fs.readFile(filename, 'utf8', function (err, text) {
+        async.forEach(filepaths, function(filepath, callback) {
+            const relPath = dropPrefix(rootPath, filepath);
+            fs.readFile(filepath, 'utf8', function (err, text) {
                 if (err) {
                     return callback(err);
                 }
@@ -114,18 +114,19 @@ function scanExamples(rootPath, options, callback) {
     });
 }
 
-function filterExampleFilenames(filenames, options) {
+function filterExampleFilepaths(filepaths, options) {
     const keyMap = new Map();
-    for (const filename of filenames) {
-        const {key, lang} = decodeFilename(path.basename(filename));
+    for (const filepath of filepaths) {
+        const {directory, key, lang} = decodeFilepath(filepath);
 
-        let variants = keyMap.get(key);
+        let variants = keyMap.get(directory + '-' + key);
+
         if (!variants) {
             variants = new Map();
-            keyMap.set(key, variants);
+            keyMap.set(directory + '-' + key, variants);
         }
 
-        variants.set(lang, filename);
+        variants.set(lang, filepath);
     }
 
     /* filter language is 'en' if unspecified */
@@ -135,7 +136,7 @@ function filterExampleFilenames(filenames, options) {
     }
 
     const result = [];
-    for (const [variants] of keyMap.entries()) {
+    for (const [key, variants] of keyMap.entries()) {
         if (variants.has(lang)) {
             result.push(variants.get(lang));
         } else if (variants.has('en')) {
@@ -147,16 +148,17 @@ function filterExampleFilenames(filenames, options) {
     return result.sort();
 }
 
-function decodeFilename(filename) {
-    const md = /^([A-Za-z0-9_-]+)(?:\.([a-z]{2}))?\.c$/.exec(filename);
+function decodeFilepath(filepath) {
+    const md = /^.*\/(.*)\/([A-Za-z0-9_-]+)(?:\.([a-z]{2}))?\..*$/.exec(filepath);
     if (!md) {
         return false;
     }
 
-    const key = md[1];
-    const lang = md[2] || 'en'; /* example language is 'en' if unspecified */
+    const directory = md[1];
+    const key = md[2];
+    const lang = md[3] || 'en'; /* example language is 'en' if unspecified */
 
-    return {key, lang};
+    return {directory, key, lang};
 }
 
 function collectTags(examples) {

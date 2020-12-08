@@ -1,4 +1,4 @@
-/* {"title":"quicksort","mode":"unix","tags":["plain"]} */
+/* {"title":"quicksort","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 
 void print_array(int size, int array[]) {

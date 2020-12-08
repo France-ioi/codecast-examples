@@ -1,4 +1,4 @@
-/* {"title":"blink (2 LEDs)","mode":"arduino","tags":["arduino"]} */
+/* {"title":"blink (2 LEDs)","platform":"arduino","tags":["arduino"]} */
 #define RED_LED_PIN 0
 #define GRN_LED_PIN 1
 void setup() {

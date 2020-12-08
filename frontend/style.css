@@ -13,3 +13,10 @@
   max-width: 1000px;
   min-height: 100vh;
 }
+
+.pt-form-content .pt-tag {
+  margin-left: 5px;
+}
+.pt-form-content .pt-tag:first-child {
+  margin-left: 0;
+}

@@ -1,4 +1,4 @@
-/* {"title":"operators: logical, increment","tags":["plain"]} */
+/* {"title":"operators: logical, increment","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int k = 0;

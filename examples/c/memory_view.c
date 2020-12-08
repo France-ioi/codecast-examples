@@ -1,4 +1,4 @@
-/* {"title":"memory view","tags":["plain"]} */
+/* {"title":"memory view","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 void show(int i, int j) {
     printf("i = %i, j = %i\n", i, j);

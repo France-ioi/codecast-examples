@@ -1,4 +1,4 @@
-/* {"title":"types composés","tags":["plain"]} */
+/* {"title":"types composés","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 int main() {
 

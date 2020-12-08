@@ -1,4 +1,3 @@
-
 import IntlMessageFormat from 'intl-messageformat';
 import memoize from 'lodash.memoize';
 
@@ -21,20 +20,39 @@ const Message = {
     yield this.toString();
   }
 };
-Object.defineProperty(Message, 's', { get() { return this.toString(); } });
+Object.defineProperty(Message, 's', {
+  get() {
+    return this.toString();
+  }
+});
 
-function setLanguageReducer (state, {payload: {language}}) {
-  if (!Messages[language]) language = 'en-US';
-  const localizedMessage = Object.create(Message,
-      {_l: {writable: false, configurable: false, value: language}});
-  const getMessage = memoize(function (message, defaultText) {
+function setLanguageReducer(state, {payload: {language}}) {
+  if (!Messages[language]) {
+    language = 'en-US';
+  }
+
+  const localizedMessage = Object.create(Message, {
+    _l: {
+      writable: false,
+      configurable: false,
+      value: language
+    }
+  });
+
+  const getMessage = memoize(function(message, defaultText) {
     const value = Messages[language][message] || defaultText || `L:${message}`;
-    return Object.create(localizedMessage,
-      {_m: {writable: false, configurable: false, value}});
+    return Object.create(localizedMessage, {
+      _m: {
+        writable: false,
+        configurable: false,
+        value
+      }
+    });
   });
   getMessage.format = function (value) {
     return getMessage(value.toString());
   }
+
   return {...state, language, getMessage};
 }
 

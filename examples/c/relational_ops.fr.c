@@ -1,4 +1,4 @@
-/* {"title":"opérateurs relationnels","tags":["plain"]} */
+/* {"title":"opérateurs relationnels","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 int main() {
   int a = 1, b = 2;

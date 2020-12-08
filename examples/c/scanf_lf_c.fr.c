@@ -1,4 +1,4 @@
-/* {"title":"scanf %lf %c","tags":["plain"]} */
+/* {"title":"scanf %lf %c","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 int main() {
     double d;

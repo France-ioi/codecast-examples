@@ -1,4 +1,4 @@
-/* {"title":"2D array global, initialized","tags":["plain"]} */
+/* {"title":"2D array global, initialized","mode":"unix","tags":["plain"]} */
 #include <stdio.h>
 int a[][2] = {{1, 2}, {3, 4}};
 int main() {

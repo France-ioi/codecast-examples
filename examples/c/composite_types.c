@@ -1,4 +1,4 @@
-/* {"title":"composite types","tags":["plain"]} */
+/* {"title":"composite types","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int main() {
 

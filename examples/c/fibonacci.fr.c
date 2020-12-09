@@ -1,4 +1,4 @@
-/* {"title":"fibonacci","tags":["plain"]} */
+/* {"title":"fibonacci","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int fibo(int n) {
    if (n == 0)

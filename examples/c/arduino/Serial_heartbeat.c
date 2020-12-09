@@ -1,4 +1,4 @@
-/* {"title":"heartbeat","mode":"arduino","tags":["arduino"]} */
+/* {"title":"heartbeat","platform":"arduino","tags":["arduino"]} */
 void setup() {
 }
 void loop() {

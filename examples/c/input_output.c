@@ -1,4 +1,4 @@
-/* {"title":"input/output","tags":["plain"]} */
+/* {"title":"input/output","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 unsigned long strlen(const char * s) {
   unsigned long l = 0;

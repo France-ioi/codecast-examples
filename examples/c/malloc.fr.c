@@ -1,4 +1,4 @@
-/* {"title":"allocation dynamique (malloc)","tags":["plain"]} */
+/* {"title":"allocation dynamique (malloc)","platform":"unix","tags":["unix"]} */
 #include <stdlib.h>
 int main() {
     //! showMemory(start=272)

@@ -1,4 +1,4 @@
-/* {"title":"1D array","tags":["plain"]} */
+/* {"title":"1D array","platform":"unix","tags":["unix"]} */
 #include <stdio.h>
 int main() {
     //! showArray(a, cursors=[i,n], n=8, cw=32)

@@ -1,4 +1,4 @@
-/* {"title":"analogRead","mode":"arduino","tags":["arduino"]} */
+/* {"title":"analogRead","platform":"arduino","tags":["arduino"]} */
 void setup() {
     pinMode(14, INPUT);
 }

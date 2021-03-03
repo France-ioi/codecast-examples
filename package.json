@@ -41,7 +41,7 @@
     "intl-messageformat": "^2.2.0",
     "lodash.memoize": "^4.1.2",
     "nodemon": "^1.12.1",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
